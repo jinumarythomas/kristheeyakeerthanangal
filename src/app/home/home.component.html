@@ -1,0 +1,126 @@
+<div id="page-wrapper">
+
+    <!-- Header -->
+      <div id="header">
+
+        <!-- Nav -->
+          <nav id="nav">
+            <ul>
+              <li class="opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                <a href="http://www.kristheeyakeerthanangal.org"><h1>Kristheeya Keerthanangal</h1></a>    
+              </li>
+            </ul>
+          </nav>
+
+      </div>
+
+    <!-- Song component -->
+      <section id="banner">
+          <app-song #songComponent (showSongFlag)="showSongFlag($event)" (songUrl)="songUrl($event)"></app-song>
+      </section>
+
+    <!-- Highlights -->
+      <section class="wrapper style1">
+          <section *ngIf="showSong" class="container songContainer">
+            <div class="song-box">
+                <img class="song-image" src="{{song}}">
+              <!-- <iframe width="100%" height="200" src="https://www.youtube.com/embed/bhYWA7LOqP4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            </div>
+          </section>
+          <div class="container aboutSection">
+            <div class="row gtr-200">
+              <section class="col-4 col-12-narrower">
+                <div class="box highlight songListContainer">
+                  <i class="icon major fa-list"></i>
+                  
+                  <h3>Song List</h3>
+                  <ul *ngIf="songs">
+                    <li *ngFor="let item of songs.songArr | paginate: { itemsPerPage: 10, currentPage: page }">
+                      <a (click)="selectedSong(item)"> {{ item.title }}</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="pagination">
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </div>
+              </section>
+
+              <section class="col-4 col-12-narrower">
+                <div class="box highlight">
+                  <i class="icon major fa-signal"></i>
+                  <h3>Song of the week</h3>
+                  <p><a (click)="selectedSong(songs.songArr[0])"> 1 - Athi ravile thiru sannidhi</a></p> 
+                </div>
+              </section>
+
+              <section class="col-4 col-12-narrower">
+                  <div class="box highlight">
+                    <i class="icon major fa-music"></i>
+                    <h3>About</h3>
+                    <p>This website provides a complete collection of songs from 
+                      Malankara Mar Thoma Syrian Church's Kristheeya Keerthanangal song book. 
+                      Search for your favorite song or choose from the list above.
+                      <br>
+                      Note: Currently the website provides first 150 songs. More songs
+                      to follow. Stay tuned !
+                      </p>
+                  </div>
+                </section>
+            </div>
+          </div>
+      </section>
+
+
+    <!-- Footer -->
+      <div id="footer">
+        <div class="container">
+          <div class="row">
+            <section class="col-12">
+              <h3>Get In Touch</h3>
+              <form *ngIf="!submitted" #newUserForm="ngForm" (ngSubmit)="onSubmit(newUserForm)">
+                <div class="row gtr-50">
+                  <div class="col-6 col-12-mobilep">
+                    <input type="text" name="name" id="userName" [(ngModel)]="userName"  placeholder="Name">
+                  </div>
+                  <div class="col-6 col-12-mobilep">
+                    <input type="email" name="email" id="email" [(ngModel)]="email" placeholder="Email">
+                  </div>
+                  <div class="col-12">
+                    <textarea [(ngModel)]="comment" name="comment"  id="message" placeholder="Message" rows="5"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <ul class="actions">
+                      <li><input type="submit" class="button primary" value="Send Message"></li>
+                    </ul>
+                  </div>
+                </div>
+              </form>
+               <div *ngIf="thanks">Thank you for your feedback.</div>
+            </section>
+          </div>
+        </div>
+
+
+        <!-- Icons -->
+          <ul class="icons">
+            <li><a href="https://twitter.com/intent/tweet?url=http://www.kristheeyakeerthanangal.org&text=Kristheeya Keerthanangal" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.kristheeyakeerthanangal.org" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://wa.me/?text=http://www.kristheeyakeerthanangal.org" class="icon fa fa-whatsapp fa-2x fa-fw" target="_blank"><span class="label">Whatsapp</span></a></li>
+          </ul>
+
+        <!-- Copyright -->
+          <div class="copyright">
+            <ul class="menu">
+              <li>© http://www.kristheeyakeerthanangal.org</li><li>All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo /assets/images: <a href="http://unsplash.com">Unsplash</a></li>
+            </ul>
+          </div>
+
+      </div>
+
+  </div>
+
+<div id="titleBar">
+  <span class="title">
+    <em><a href="http://www.kristheeyakeerthanangal.org"><h1>Kristheeya Keerthanangal</h1></a></em>
+  </span>
+</div>

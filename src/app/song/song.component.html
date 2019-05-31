@@ -1,0 +1,24 @@
+<!-- Masthead -->
+<header #masthead class="masthead text-white text-center">
+  <div class="searchInputBox">
+    <i class="searchButton fa fa-search" aria-hidden="true"></i>
+    <input #searchFocus type="text"
+      name="term"
+      [(ngModel)]="term"
+      (keyup)="searchText()"
+      class="searchInput form-control form-control-lg"
+      placeholder="Search song..."/>
+    <div class="cancelOuter">
+      <i (click)="clear()" class="closeButton fa fa-times-circle-o" aria-hidden="true"></i>
+    </div>
+    <div #searchResult class="searchResult" *ngIf="showList && this.term.length > 0">
+        <ul>
+          <li #listCount (click)="selectedSong(song)" *ngFor="let song of (songs.songArr | filter: term)" [class.active]="i == arrowkeyLocation">
+            <span [innerHtml]="song.title | highlight : term"></span>
+          </li>
+        </ul>
+      </div>
+  </div>
+</header>
+
+
